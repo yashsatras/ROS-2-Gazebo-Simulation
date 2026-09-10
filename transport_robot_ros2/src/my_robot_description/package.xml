@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+
+<?xml-model
+  href="http://download.ros.org/schema/package_format3.xsd"
+  schematypens="http://www.w3.org/2001/XMLSchema"
+?>
+
+<package format="3">
+
+  <!-- ====================================================== -->
+  <!-- Package information                                    -->
+  <!-- ====================================================== -->
+
+  <name>my_robot_description</name>
+
+  <version>1.0.0</version>
+
+  <description>
+    URDF and Xacro description package for the transport robot.
+    Contains robot meshes, sensors, Gazebo configuration and
+    ros2_control configuration.
+  </description>
+
+  <maintainer email="abhinav@todo.todo">
+    abhinav
+  </maintainer>
+
+  <license>Apache-2.0</license>
+
+
+  <!-- ====================================================== -->
+  <!-- Build system                                           -->
+  <!-- ====================================================== -->
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+
+  <!-- ====================================================== -->
+  <!-- Xacro                                                   -->
+  <!-- ====================================================== -->
+
+  <exec_depend>xacro</exec_depend>
+
+
+  <!-- ====================================================== -->
+  <!-- Robot State Publisher                                  -->
+  <!-- ====================================================== -->
+
+  <exec_depend>robot_state_publisher</exec_depend>
+
+
+  <!-- ====================================================== -->
+  <!-- Joint State Publisher                                  -->
+  <!-- ====================================================== -->
+
+  <exec_depend>joint_state_publisher</exec_depend>
+
+  <exec_depend>joint_state_publisher_gui</exec_depend>
+
+
+  <!-- ====================================================== -->
+  <!-- ROS 2 Control                                          -->
+  <!-- ====================================================== -->
+
+  <exec_depend>ros2_control</exec_depend>
+
+  <exec_depend>ros2_controllers</exec_depend>
+
+
+  <!-- ====================================================== -->
+  <!-- Gazebo / ROS-Gazebo                                    -->
+  <!-- ====================================================== -->
+
+  <exec_depend>ros_gz_sim</exec_depend>
+
+  <exec_depend>ros_gz_bridge</exec_depend>
+
+  <exec_depend>gz_ros2_control</exec_depend>
+
+
+  <!-- ====================================================== -->
+  <!-- Sensor messages                                        -->
+  <!-- ====================================================== -->
+
+  <exec_depend>sensor_msgs</exec_depend>
+
+
+  <!-- ====================================================== -->
+  <!-- ROS 2 messages used by Gazebo bridge                   -->
+  <!-- ====================================================== -->
+
+  <exec_depend>rosgraph_msgs</exec_depend>
+
+
+  <!-- ====================================================== -->
+  <!-- Testing / linting                                      -->
+  <!-- ====================================================== -->
+
+  <test_depend>ament_lint_auto</test_depend>
+
+  <test_depend>ament_lint_common</test_depend>
+
+
+  <!-- ====================================================== -->
+  <!-- Package type                                           -->
+  <!-- ====================================================== -->
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+
+</package>
