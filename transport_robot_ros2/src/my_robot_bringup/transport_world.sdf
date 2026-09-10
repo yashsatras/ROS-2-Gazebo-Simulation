@@ -1,0 +1,1762 @@
+<?xml version="1.0" ?>
+<sdf version="1.9">
+
+  <world name="robocon_test_field">
+
+    <!-- ========================================================= -->
+    <!-- WORLD PHYSICS                                             -->
+    <!-- ========================================================= -->
+
+    <gravity>0 0 -9.81</gravity>
+
+    <physics name="default_physics" type="ode">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+
+
+    <!-- ========================================================= -->
+    <!-- GAZEBO SYSTEM PLUGINS                                     -->
+    <!-- ========================================================= -->
+
+    <!-- Physics -->
+    <plugin
+      filename="gz-sim-physics-system"
+      name="gz::sim::systems::Physics"/>
+
+    <!-- User commands -->
+    <plugin
+      filename="gz-sim-user-commands-system"
+      name="gz::sim::systems::UserCommands"/>
+
+    <!-- Publishes scene information to Gazebo GUI -->
+    <plugin
+      filename="gz-sim-scene-broadcaster-system"
+      name="gz::sim::systems::SceneBroadcaster"/>
+
+    <!-- ========================================================= -->
+    <!-- IMPORTANT: SENSOR SYSTEM                                 -->
+    <!-- Required for camera and GPU LiDAR                        -->
+    <!-- ========================================================= -->
+
+    <plugin
+      filename="gz-sim-sensors-system"
+      name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+
+
+    <!-- ========================================================= -->
+    <!-- SUN / LIGHT                                               -->
+    <!-- ========================================================= -->
+
+    <light name="sun" type="directional">
+
+      <pose>0 0 10 0 0 0</pose>
+
+      <cast_shadows>true</cast_shadows>
+
+      <diffuse>
+        0.8 0.8 0.8 1
+      </diffuse>
+
+      <specular>
+        0.2 0.2 0.2 1
+      </specular>
+
+      <direction>
+        -0.5 0.5 -1
+      </direction>
+
+    </light>
+
+
+    <!-- ========================================================= -->
+    <!-- PINK HALF                                                 -->
+    <!-- Size: 5.5 m x 11 m                                      -->
+    <!-- Center: x = -2.75 m                                      -->
+    <!-- ========================================================= -->
+
+    <model name="pink_half">
+
+      <static>true</static>
+
+      <pose>
+        -2.75 0 -0.05 0 0 0
+      </pose>
+
+      <link name="pink_floor">
+
+        <collision name="pink_collision">
+
+          <geometry>
+
+            <box>
+              <size>
+                5.5 11 0.1
+              </size>
+            </box>
+
+          </geometry>
+
+        </collision>
+
+
+        <visual name="pink_visual">
+
+          <geometry>
+
+            <box>
+              <size>
+                5.5 11 0.1
+              </size>
+            </box>
+
+          </geometry>
+
+          <material>
+
+            <ambient>
+              0.996 0.875 0.867 1
+            </ambient>
+
+            <diffuse>
+              0.996 0.875 0.867 1
+            </diffuse>
+
+            <specular>
+              0.05 0.05 0.05 1
+            </specular>
+
+          </material>
+
+        </visual>
+
+      </link>
+
+    </model>
+
+
+    <!-- ========================================================= -->
+    <!-- BLUE HALF                                                 -->
+    <!-- Size: 5.5 m x 11 m                                      -->
+    <!-- Center: x = +2.75 m                                      -->
+    <!-- ========================================================= -->
+
+    <model name="blue_half">
+
+      <static>true</static>
+
+      <pose>
+        2.75 0 -0.05 0 0 0
+      </pose>
+
+      <link name="blue_floor">
+
+        <collision name="blue_collision">
+
+          <geometry>
+
+            <box>
+              <size>
+                5.5 11 0.1
+              </size>
+            </box>
+
+          </geometry>
+
+        </collision>
+
+
+        <visual name="blue_visual">
+
+          <geometry>
+
+            <box>
+              <size>
+                5.5 11 0.1
+              </size>
+            </box>
+
+          </geometry>
+
+          <material>
+
+            <ambient>
+              0.510 0.792 0.898 1
+            </ambient>
+
+            <diffuse>
+              0.510 0.792 0.898 1
+            </diffuse>
+
+            <specular>
+              0.05 0.05 0.05 1
+            </specular>
+
+          </material>
+
+        </visual>
+
+      </link>
+
+    </model>
+
+
+    <!-- ========================================================= -->
+    <!-- CENTER DIVIDING LINE                                     -->
+    <!-- ========================================================= -->
+
+    <model name="center_line">
+
+      <static>true</static>
+
+      <pose>
+        0 0 0.006 0 0 0
+      </pose>
+
+      <link name="center_line_link">
+
+        <visual name="center_line_visual">
+
+          <geometry>
+
+            <box>
+              <size>
+                0.04 11 0.012
+              </size>
+            </box>
+
+          </geometry>
+
+          <material>
+
+            <ambient>
+              0.05 0.05 0.05 1
+            </ambient>
+
+            <diffuse>
+              0.05 0.05 0.05 1
+            </diffuse>
+
+          </material>
+
+        </visual>
+
+      </link>
+
+    </model>
+
+
+    <!-- ========================================================= -->
+    <!-- RED CORNER ZONE                                          -->
+    <!-- ========================================================= -->
+
+    <model name="red_corner_zone">
+
+      <static>true</static>
+
+      <pose>
+        -4.5 5.0 0.012 0 0 0
+      </pose>
+
+      <link name="red_corner_link">
+
+        <visual name="red_corner_visual">
+
+          <geometry>
+
+            <box>
+              <size>
+                2.0 1.0 0.012
+              </size>
+            </box>
+
+          </geometry>
+
+          <material>
+
+            <ambient>
+              0.95 0.02 0.02 1
+            </ambient>
+
+            <diffuse>
+              0.95 0.02 0.02 1
+            </diffuse>
+
+            <specular>
+              0.05 0.05 0.05 1
+            </specular>
+
+          </material>
+
+        </visual>
+
+      </link>
+
+    </model>
+
+
+    <!-- ========================================================= -->
+    <!-- RED CORNER BOTTOM RIGHT 1                                -->
+    <!-- ========================================================= -->
+
+    <model name="red_cornerbotr1_zone">
+
+      <static>true</static>
+
+      <pose>
+        -5.2 -5.2 0.012 0 0 0
+      </pose>
+
+      <link name="red_cornerbotr1_link">
+
+        <visual name="red_cornerbotr1_visual">
+
+          <geometry>
+
+            <box>
+              <size>
+                0.7 0.7 0.012
+              </size>
+            </box>
+
+          </geometry>
+
+          <material>
+
+            <ambient>
+              0.95 0.02 0.02 1
+            </ambient>
+
+            <diffuse>
+              0.95 0.02 0.02 1
+            </diffuse>
+
+            <specular>
+              0.05 0.05 0.05 1
+            </specular>
+
+          </material>
+
+        </visual>
+
+      </link>
+
+    </model>
+
+
+    <!-- ========================================================= -->
+    <!-- RED CORNER BOTTOM RIGHT 2                                -->
+    <!-- ========================================================= -->
+
+    <model name="red_cornerbotr2_zone">
+
+      <static>true</static>
+
+      <pose>
+        -4.4 -5.2 0.012 0 0 0
+      </pose>
+
+      <link name="red_cornerbotr2_link">
+
+        <visual name="red_cornerbotr2_visual">
+
+          <geometry>
+
+            <box>
+              <size>
+                0.7 0.7 0.012
+              </size>
+            </box>
+
+          </geometry>
+
+          <material>
+
+            <ambient>
+              0.95 0.02 0.02 1
+            </ambient>
+
+            <diffuse>
+              0.95 0.02 0.02 1
+            </diffuse>
+
+            <specular>
+              0.05 0.05 0.05 1
+            </specular>
+
+          </material>
+
+        </visual>
+
+      </link>
+
+    </model>
+
+
+    <!-- ========================================================= -->
+    <!-- BLUE CORNER ZONE                                         -->
+    <!-- ========================================================= -->
+
+    <model name="blue_corner_zone">
+
+      <static>true</static>
+
+      <pose>
+        4.5 5.0 0.012 0 0 0
+      </pose>
+
+      <link name="blue_corner_link">
+
+        <visual name="blue_corner_visual">
+
+          <geometry>
+
+            <box>
+              <size>
+                2.0 1.0 0.012
+              </size>
+            </box>
+
+          </geometry>
+
+          <material>
+
+            <ambient>
+              0.05 0.15 1.0 1
+            </ambient>
+
+            <diffuse>
+              0.05 0.15 1.0 1
+            </diffuse>
+
+            <specular>
+              0.05 0.05 0.05 1
+            </specular>
+
+          </material>
+
+        </visual>
+
+      </link>
+
+    </model>
+
+
+    <!-- ========================================================= -->
+    <!-- BLUE CORNER BOTTOM RIGHT 1                               -->
+    <!-- ========================================================= -->
+
+    <model name="blue_cornerbotr1_zone">
+
+      <static>true</static>
+
+      <pose>
+        5.2 -5.2 0.012 0 0 0
+      </pose>
+
+      <link name="blue_cornerbotr1_link">
+
+        <visual name="blue_cornerbotr1_visual">
+
+          <geometry>
+
+            <box>
+              <size>
+                0.7 0.7 0.012
+              </size>
+            </box>
+
+          </geometry>
+
+          <material>
+
+            <ambient>
+              0.05 0.15 1.0 1
+            </ambient>
+
+            <diffuse>
+              0.05 0.15 1.0 1
+            </diffuse>
+
+            <specular>
+              0.05 0.05 0.05 1
+            </specular>
+
+          </material>
+
+        </visual>
+
+      </link>
+
+    </model>
+
+
+    <!-- ========================================================= -->
+    <!-- BLUE CORNER BOTTOM RIGHT 2                               -->
+    <!-- ========================================================= -->
+
+    <model name="blue_cornerbotr2_zone">
+
+      <static>true</static>
+
+      <pose>
+        4.4 -5.2 0.012 0 0 0
+      </pose>
+
+      <link name="blue_cornerbotr2_link">
+
+        <visual name="blue_cornerbotr2_visual">
+
+          <geometry>
+
+            <box>
+              <size>
+                0.7 0.7 0.012
+              </size>
+            </box>
+
+          </geometry>
+
+          <material>
+
+            <ambient>
+              0.05 0.15 1.0 1
+            </ambient>
+
+            <diffuse>
+              0.05 0.15 1.0 1
+            </diffuse>
+
+            <specular>
+              0.05 0.05 0.05 1
+            </specular>
+
+          </material>
+
+        </visual>
+
+      </link>
+
+    </model>
+
+
+    <!-- ========================================================= -->
+    <!-- OUTER LEFT WALL                                          -->
+    <!-- ========================================================= -->
+
+    <model name="left_wall">
+
+      <static>true</static>
+
+      <pose>
+        -5.55 0 0.01 0 0 0
+      </pose>
+
+      <link name="wall_link">
+
+        <collision name="collision">
+
+          <geometry>
+
+            <box>
+              <size>
+                0.1 11.1 0.5
+              </size>
+            </box>
+
+          </geometry>
+
+        </collision>
+
+        <visual name="visual">
+
+          <geometry>
+
+            <box>
+              <size>
+                0.1 11.1 0.5
+              </size>
+            </box>
+
+          </geometry>
+
+          <material>
+
+            <ambient>
+              0.15 0.15 0.15 1
+            </ambient>
+
+            <diffuse>
+              0.15 0.15 0.15 1
+            </diffuse>
+
+          </material>
+
+        </visual>
+
+      </link>
+
+    </model>
+
+
+    <!-- ========================================================= -->
+    <!-- OUTER RIGHT WALL                                         -->
+    <!-- ========================================================= -->
+
+    <model name="right_wall">
+
+      <static>true</static>
+
+      <pose>
+        5.55 0 0.01 0 0 0
+      </pose>
+
+      <link name="wall_link">
+
+        <collision name="collision">
+
+          <geometry>
+
+            <box>
+              <size>
+                0.1 11.1 0.5
+              </size>
+            </box>
+
+          </geometry>
+
+        </collision>
+
+        <visual name="visual">
+
+          <geometry>
+
+            <box>
+              <size>
+                0.1 11.1 0.5
+              </size>
+            </box>
+
+          </geometry>
+
+          <material>
+
+            <ambient>
+              0.15 0.15 0.15 1
+            </ambient>
+
+            <diffuse>
+              0.15 0.15 0.15 1
+            </diffuse>
+
+          </material>
+
+        </visual>
+
+      </link>
+
+    </model>
+
+
+    <!-- ========================================================= -->
+    <!-- OUTER FRONT WALL                                         -->
+    <!-- ========================================================= -->
+
+    <model name="front_wall">
+
+      <static>true</static>
+
+      <pose>
+        0 -5.55 0.01 0 0 0
+      </pose>
+
+      <link name="wall_link">
+
+        <collision name="collision">
+
+          <geometry>
+
+            <box>
+              <size>
+                11.1 0.1 0.5
+              </size>
+            </box>
+
+          </geometry>
+
+        </collision>
+
+        <visual name="visual">
+
+          <geometry>
+
+            <box>
+              <size>
+                11.1 0.1 0.5
+              </size>
+            </box>
+
+          </geometry>
+
+          <material>
+
+            <ambient>
+              0.15 0.15 0.15 1
+            </ambient>
+
+            <diffuse>
+              0.15 0.15 0.15 1
+            </diffuse>
+
+          </material>
+
+        </visual>
+
+      </link>
+
+    </model>
+
+
+    <!-- ========================================================= -->
+    <!-- OUTER BACK WALL                                          -->
+    <!-- ========================================================= -->
+
+    <model name="back_wall">
+
+      <static>true</static>
+
+      <pose>
+        0 5.55 0.01 0 0 0
+      </pose>
+
+      <link name="wall_link">
+
+        <collision name="collision">
+
+          <geometry>
+
+            <box>
+              <size>
+                11.1 0.1 0.5
+              </size>
+            </box>
+
+          </geometry>
+
+        </collision>
+
+        <visual name="visual">
+
+          <geometry>
+
+            <box>
+              <size>
+                11.1 0.1 0.5
+              </size>
+            </box>
+
+          </geometry>
+
+          <material>
+
+            <ambient>
+              0.15 0.15 0.15 1
+            </ambient>
+
+            <diffuse>
+              0.15 0.15 0.15 1
+            </diffuse>
+
+          </material>
+
+        </visual>
+
+      </link>
+
+    </model>
+
+
+    <!-- ========================================================= -->
+    <!-- RED SOLID WOODEN RAMP                                    -->
+    <!-- Length: 3.5 m                                           -->
+    <!-- Width: 1.0 m                                            -->
+    <!-- ========================================================= -->
+
+    <model name="solid_wooden_ramp">
+
+      <static>true</static>
+
+      <link name="link">
+
+        <pose>
+          -3 2.7 0 1.57 0 -1.57
+        </pose>
+
+        <collision name="collision">
+
+          <geometry>
+
+            <polyline>
+
+              <height>1</height>
+
+              <point>
+                0 0
+              </point>
+
+              <point>
+                3.5 0
+              </point>
+
+              <point>
+                3.5 0.375
+              </point>
+
+            </polyline>
+
+          </geometry>
+
+          <surface>
+
+            <friction>
+
+              <ode>
+                <mu>0.8</mu>
+                <mu2>0.7</mu2>
+              </ode>
+
+            </friction>
+
+          </surface>
+
+        </collision>
+
+
+        <visual name="visual">
+
+          <geometry>
+
+            <polyline>
+
+              <height>1</height>
+
+              <point>
+                0 0
+              </point>
+
+              <point>
+                3.5 0
+              </point>
+
+              <point>
+                3.5 0.375
+              </point>
+
+            </polyline>
+
+          </geometry>
+
+          <material>
+
+            <ambient>
+              0.68 0.50 0.45 1.0
+            </ambient>
+
+            <diffuse>
+              0.88 0.70 0.65 1.0
+            </diffuse>
+
+            <specular>
+              0.1 0.1 0.1 1.0
+            </specular>
+
+          </material>
+
+        </visual>
+
+      </link>
+
+    </model>
+
+
+    <!-- ========================================================= -->
+    <!-- BLUE SOLID WOODEN RAMP                                   -->
+    <!-- ========================================================= -->
+
+    <model name="solid_wooden_ramp_blue">
+
+      <static>true</static>
+
+      <link name="link">
+
+        <pose>
+          4 2.7 0 1.57 0 -1.57
+        </pose>
+
+        <collision name="collision">
+
+          <geometry>
+
+            <polyline>
+
+              <height>1</height>
+
+              <point>
+                0 0
+              </point>
+
+              <point>
+                3.5 0
+              </point>
+
+              <point>
+                3.5 0.375
+              </point>
+
+            </polyline>
+
+          </geometry>
+
+          <surface>
+
+            <friction>
+
+              <ode>
+                <mu>0.8</mu>
+                <mu2>0.7</mu2>
+              </ode>
+
+            </friction>
+
+          </surface>
+
+        </collision>
+
+
+        <visual name="visual">
+
+          <geometry>
+
+            <polyline>
+
+              <height>1</height>
+
+              <point>
+                0 0
+              </point>
+
+              <point>
+                3.5 0
+              </point>
+
+              <point>
+                3.5 0.375
+              </point>
+
+            </polyline>
+
+          </geometry>
+
+          <material>
+
+            <ambient>
+              0.498 0.835 0.855 1
+            </ambient>
+
+            <diffuse>
+              0.498 0.835 0.855 1
+            </diffuse>
+
+            <specular>
+              0.05 0.05 0.05 1
+            </specular>
+
+          </material>
+
+        </visual>
+
+      </link>
+
+    </model>
+
+
+    <!-- ========================================================= -->
+    <!-- SPLIT TERRACE PLATFORM - PINK                            -->
+    <!-- Size: 3 m x 6 m                                         -->
+    <!-- ========================================================= -->
+
+    <model name="terrace_platform_pink">
+
+      <static>true</static>
+
+      <pose>
+        -1.5 0 0.075 0 0 0
+      </pose>
+
+      <link name="link">
+
+        <collision name="collision">
+
+          <geometry>
+
+            <box>
+              <size>
+                3 6.0 0.6
+              </size>
+            </box>
+
+          </geometry>
+
+        </collision>
+
+
+        <visual name="visual">
+
+          <geometry>
+
+            <box>
+              <size>
+                3 6.0 0.6
+              </size>
+            </box>
+
+          </geometry>
+
+          <material>
+
+            <ambient>
+              1.0 0.737 0.635 1
+            </ambient>
+
+            <diffuse>
+              1.0 0.737 0.635 1
+            </diffuse>
+
+            <specular>
+              0.05 0.05 0.05 1
+            </specular>
+
+          </material>
+
+        </visual>
+
+      </link>
+
+    </model>
+
+
+    <!-- ========================================================= -->
+    <!-- SPLIT TERRACE PLATFORM - BLUE                            -->
+    <!-- Size: 3 m x 6 m                                         -->
+    <!-- ========================================================= -->
+
+    <model name="terrace_platform_blue">
+
+      <static>true</static>
+
+      <pose>
+        1.5 0 0.075 0 0 0
+      </pose>
+
+      <link name="link">
+
+        <collision name="collision">
+
+          <geometry>
+
+            <box>
+              <size>
+                3 6.0 0.6
+              </size>
+            </box>
+
+          </geometry>
+
+        </collision>
+
+
+        <visual name="visual">
+
+          <geometry>
+
+            <box>
+              <size>
+                3 6.0 0.6
+              </size>
+            </box>
+
+          </geometry>
+
+          <material>
+
+            <ambient>
+              0.498 0.835 0.855 1
+            </ambient>
+
+            <diffuse>
+              0.498 0.835 0.855 1
+            </diffuse>
+
+            <specular>
+              0.05 0.05 0.05 1
+            </specular>
+
+          </material>
+
+        </visual>
+
+      </link>
+
+    </model>
+
+
+    <!-- ========================================================= -->
+    <!-- CENTRAL HIGH PLATFORM                                    -->
+    <!-- ========================================================= -->
+
+    <model name="central_high_platform">
+
+      <static>true</static>
+
+      <pose>
+        0 0 0.46 0 0 0
+      </pose>
+
+      <link name="link">
+
+        <collision name="collision">
+
+          <geometry>
+
+            <box>
+              <size>
+                2.0 2.0 0.15
+              </size>
+            </box>
+
+          </geometry>
+
+        </collision>
+
+
+        <visual name="visual">
+
+          <geometry>
+
+            <box>
+              <size>
+                2.0 2.0 0.15
+              </size>
+            </box>
+
+          </geometry>
+
+          <material>
+
+            <ambient>
+              0.80 0.80 0.80 1
+            </ambient>
+
+            <diffuse>
+              0.85 0.85 0.85 1
+            </diffuse>
+
+          </material>
+
+        </visual>
+
+      </link>
+
+    </model>
+
+
+    <!-- ========================================================= -->
+    <!-- CENTER GOAL POLE                                         -->
+    <!-- ========================================================= -->
+
+    <model name="center_pole">
+
+      <static>true</static>
+
+      <pose>
+        0 0 0.94 0 0 0
+      </pose>
+
+      <link name="link">
+
+        <collision name="collision">
+
+          <geometry>
+
+            <cylinder>
+
+              <radius>
+                0.135
+              </radius>
+
+              <length>
+                0.80
+              </length>
+
+            </cylinder>
+
+          </geometry>
+
+        </collision>
+
+
+        <visual name="visual">
+
+          <geometry>
+
+            <cylinder>
+
+              <radius>
+                0.135
+              </radius>
+
+              <length>
+                0.80
+              </length>
+
+            </cylinder>
+
+          </geometry>
+
+          <material>
+
+            <ambient>
+              0.75 0.50 0.10 1
+            </ambient>
+
+            <diffuse>
+              0.85 0.55 0.15 1
+            </diffuse>
+
+          </material>
+
+        </visual>
+
+      </link>
+
+    </model>
+
+
+    <!-- ========================================================= -->
+    <!-- PINK TERRACE STAIR                                      -->
+    <!-- ========================================================= -->
+
+    <model name="terrace_platform_stair">
+
+      <static>true</static>
+
+      <pose>
+        -3.5 -1.3 0.075 0 0 0
+      </pose>
+
+      <link name="link">
+
+        <collision name="collision">
+
+          <geometry>
+
+            <box>
+              <size>
+                1 1.0 0.6
+              </size>
+            </box>
+
+          </geometry>
+
+        </collision>
+
+
+        <visual name="visual">
+
+          <geometry>
+
+            <box>
+              <size>
+                1 1.0 0.6
+              </size>
+            </box>
+
+          </geometry>
+
+          <material>
+
+            <ambient>
+              1.0 0.737 0.635 1
+            </ambient>
+
+            <diffuse>
+              1.0 0.737 0.635 1
+            </diffuse>
+
+            <specular>
+              0.05 0.05 0.05 1
+            </specular>
+
+          </material>
+
+        </visual>
+
+      </link>
+
+    </model>
+
+
+    <!-- ========================================================= -->
+    <!-- PINK STAIR 1                                             -->
+    <!-- ========================================================= -->
+
+    <model name="terrace_platform_stair1">
+
+      <static>true</static>
+
+      <pose>
+        -3.5 -1.95 0.075 0 0 0
+      </pose>
+
+      <link name="link">
+
+        <collision name="collision">
+
+          <geometry>
+
+            <box>
+              <size>
+                1 0.3 0.45
+              </size>
+            </box>
+
+          </geometry>
+
+        </collision>
+
+
+        <visual name="visual">
+
+          <geometry>
+
+            <box>
+              <size>
+                1 0.3 0.45
+              </size>
+            </box>
+
+          </geometry>
+
+          <material>
+
+            <ambient>
+              1.0 0.737 0.635 1
+            </ambient>
+
+            <diffuse>
+              1.0 0.737 0.635 1
+            </diffuse>
+
+            <specular>
+              0.05 0.05 0.05 1
+            </specular>
+
+          </material>
+
+        </visual>
+
+      </link>
+
+    </model>
+
+
+    <!-- ========================================================= -->
+    <!-- PINK STAIR 2                                             -->
+    <!-- ========================================================= -->
+
+    <model name="terrace_platform_stair2">
+
+      <static>true</static>
+
+      <pose>
+        -3.5 -2.25 0.075 0 0 0
+      </pose>
+
+      <link name="link">
+
+        <collision name="collision">
+
+          <geometry>
+
+            <box>
+              <size>
+                1 0.3 0.3
+              </size>
+            </box>
+
+          </geometry>
+
+        </collision>
+
+
+        <visual name="visual">
+
+          <geometry>
+
+            <box>
+              <size>
+                1 0.3 0.3
+              </size>
+            </box>
+
+          </geometry>
+
+          <material>
+
+            <ambient>
+              1.0 0.737 0.635 1
+            </ambient>
+
+            <diffuse>
+              1.0 0.737 0.635 1
+            </diffuse>
+
+            <specular>
+              0.05 0.05 0.05 1
+            </specular>
+
+          </material>
+
+        </visual>
+
+      </link>
+
+    </model>
+
+
+    <!-- ========================================================= -->
+    <!-- PINK STAIR 3                                             -->
+    <!-- ========================================================= -->
+
+    <model name="terrace_platform_stair3">
+
+      <static>true</static>
+
+      <pose>
+        -3.5 -2.55 0.075 0 0 0
+      </pose>
+
+      <link name="link">
+
+        <collision name="collision">
+
+          <geometry>
+
+            <box>
+              <size>
+                1 0.3 0.15
+              </size>
+            </box>
+
+          </geometry>
+
+        </collision>
+
+
+        <visual name="visual">
+
+          <geometry>
+
+            <box>
+              <size>
+                1 0.3 0.15
+              </size>
+            </box>
+
+          </geometry>
+
+          <material>
+
+            <ambient>
+              1.0 0.737 0.635 1
+            </ambient>
+
+            <diffuse>
+              1.0 0.737 0.635 1
+            </diffuse>
+
+            <specular>
+              0.05 0.05 0.05 1
+            </specular>
+
+          </material>
+
+        </visual>
+
+      </link>
+
+    </model>
+
+
+    <!-- ========================================================= -->
+    <!-- BLUE TERRACE STAIR                                       -->
+    <!-- ========================================================= -->
+
+    <model name="terrace_platform_stair_blue">
+
+      <static>true</static>
+
+      <pose>
+        3.5 -1.3 0.075 0 0 0
+      </pose>
+
+      <link name="link">
+
+        <collision name="collision">
+
+          <geometry>
+
+            <box>
+              <size>
+                1 1.0 0.6
+              </size>
+            </box>
+
+          </geometry>
+
+        </collision>
+
+
+        <visual name="visual">
+
+          <geometry>
+
+            <box>
+              <size>
+                1 1.0 0.6
+              </size>
+            </box>
+
+          </geometry>
+
+          <material>
+
+            <ambient>
+              0.498 0.835 0.855 1
+            </ambient>
+
+            <diffuse>
+              0.498 0.835 0.855 1
+            </diffuse>
+
+            <specular>
+              0.05 0.05 0.05 1
+            </specular>
+
+          </material>
+
+        </visual>
+
+      </link>
+
+    </model>
+
+
+    <!-- ========================================================= -->
+    <!-- BLUE STAIR 1                                             -->
+    <!-- ========================================================= -->
+
+    <model name="terrace_platform_stair1_blue">
+
+      <static>true</static>
+
+      <pose>
+        3.5 -1.95 0.075 0 0 0
+      </pose>
+
+      <link name="link">
+
+        <collision name="collision">
+
+          <geometry>
+
+            <box>
+              <size>
+                1 0.3 0.45
+              </size>
+            </box>
+
+          </geometry>
+
+        </collision>
+
+
+        <visual name="visual">
+
+          <geometry>
+
+            <box>
+              <size>
+                1 0.3 0.45
+              </size>
+            </box>
+
+          </geometry>
+
+          <material>
+
+            <ambient>
+              0.498 0.835 0.855 1
+            </ambient>
+
+            <diffuse>
+              0.498 0.835 0.855 1
+            </diffuse>
+
+            <specular>
+              0.05 0.05 0.05 1
+            </specular>
+
+          </material>
+
+        </visual>
+
+      </link>
+
+    </model>
+
+
+    <!-- ========================================================= -->
+    <!-- BLUE STAIR 2                                             -->
+    <!-- ========================================================= -->
+
+    <model name="terrace_platform_stair2_blue">
+
+      <static>true</static>
+
+      <pose>
+        3.5 -2.25 0.075 0 0 0
+      </pose>
+
+      <link name="link">
+
+        <collision name="collision">
+
+          <geometry>
+
+            <box>
+              <size>
+                1 0.3 0.3
+              </size>
+            </box>
+
+          </geometry>
+
+        </collision>
+
+
+        <visual name="visual">
+
+          <geometry>
+
+            <box>
+              <size>
+                1 0.3 0.3
+              </size>
+            </box>
+
+          </geometry>
+
+          <material>
+
+            <ambient>
+              0.498 0.835 0.855 1
+            </ambient>
+
+            <diffuse>
+              0.498 0.835 0.855 1
+            </diffuse>
+
+            <specular>
+              0.05 0.05 0.05 1
+            </specular>
+
+          </material>
+
+        </visual>
+
+      </link>
+
+    </model>
+
+
+    <!-- ========================================================= -->
+    <!-- BLUE STAIR 3                                             -->
+    <!-- ========================================================= -->
+
+    <model name="terrace_platform_stair3_blue">
+
+      <static>true</static>
+
+      <pose>
+        3.5 -2.55 0.075 0 0 0
+      </pose>
+
+      <link name="link">
+
+        <collision name="collision">
+
+          <geometry>
+
+            <box>
+              <size>
+                1 0.3 0.15
+              </size>
+            </box>
+
+          </geometry>
+
+        </collision>
+
+
+        <visual name="visual">
+
+          <geometry>
+
+            <box>
+              <size>
+                1 0.3 0.15
+              </size>
+            </box>
+
+          </geometry>
+
+          <material>
+
+            <ambient>
+              0.498 0.835 0.855 1
+            </ambient>
+
+            <diffuse>
+              0.498 0.835 0.855 1
+            </diffuse>
+
+            <specular>
+              0.05 0.05 0.05 1
+            </specular>
+
+          </material>
+
+        </visual>
+
+      </link>
+
+    </model>
+
+
+  </world>
+
+</sdf>
