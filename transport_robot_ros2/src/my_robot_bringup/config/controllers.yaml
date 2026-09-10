@@ -1,0 +1,44 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 100
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    omni_drive_controller:
+      type: omni_wheel_drive_controller/OmniWheelDriveController
+
+
+omni_drive_controller:
+  ros__parameters:
+
+    wheel_offset: 0.7853981634
+
+    wheel_names:
+      [
+        "link5_Revolute-25",
+        "link6_Revolute-26",
+        "link7_Revolute-27",
+        "link8_Revolute-28"
+      ]
+
+    robot_radius: 0.20355
+    wheel_radius: 0.076
+
+    odom_frame_id: odom
+    base_frame_id: base_footprint
+
+    pose_covariance_diagonal:
+      [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+
+    twist_covariance_diagonal:
+      [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+
+    open_loop: false
+    position_feedback: true
+
+    enable_odom_tf: true
+
+    cmd_vel_timeout: 0.5
+
+    publish_limited_velocity: true
