@@ -111,7 +111,7 @@ git clone https://github.com/YOUR_USERNAME/transport_robot_ros2.git
 Enter the repository:
 
 ```bash
-cd transport_robot_ros2
+cd ROS-2-Gazebo-Simulation/transport_robot_ros2
 ```
 
 ---
