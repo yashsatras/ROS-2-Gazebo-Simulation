@@ -105,13 +105,13 @@ sudo apt install -y \
 # 📥 Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/transport_robot_ros2.git
+git clone https://github.com/yashsatras/ROS-2-Gazebo-Simulation.git
 ```
 
 Enter the repository:
 
 ```bash
-cd transport_robot_ros2
+cd ROS-2-Gazebo-Simulation/transport_robot_ros2
 ```
 
 ---
